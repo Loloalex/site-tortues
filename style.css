@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #eefbe5;
+    color: #333;
+}
+
+header {
+    background-color: #66bb6a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #558b2f;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    height: auto;
+}
+
+/* Titres */
+h1, h2 {
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Lien */
+a {
+    color: #2e7d32;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #1b5e20;
+}
+
+/* Formulaire (quiz) */
+form {
+    background-color: #dcedc8;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+/* Questions */
+.question {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.question p {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+/* Boutons */
+button {
+    background-color: #558b2f;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 5px 0 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #33691e;
+}
+
+/* Résultat du quiz */
+#resultatQuiz {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+/* Animation de correction */
+.correct {
+    background-color: #c8e6c9;
+    border-left: 5px solid green;
+    transition: background-color 0.5s ease;
+}
+
+.incorrect {
+    background-color: #ffcdd2;
+    border-left: 5px solid red;
+    transition: background-color 0.5s ease;
+}
+
+/* Titre spécifique au quiz */
+.titre-quiz {
+    color: #2e7d32;
+    text-align: center;
+}
+
+/* Responsive mobile */
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    body {
+        margin: 10px;
+    }
+}

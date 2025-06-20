@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Tortues 🐢</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+        <h1>Quiz sur les tortues 🐢</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="especes.html">Espèces</a></li>
+                <li><a href="protection.html">Protection</a></li>
+				<li><a href="quiz.html">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="titre-quiz">Quiz : Connais-tu bien les tortues ?</h1>
+
+        <form id="quizForm">
+            <!-- Questions -->
+            <div class="question">
+                <p>1. Quelle est la durée de vie moyenne d’une tortue terrestre ?</p>
+                <label><input type="radio" name="q1" value="a"> 10 ans</label>
+                <label><input type="radio" name="q1" value="b"> 50 ans</label>
+                <label><input type="radio" name="q1" value="c"> 100 ans</label>
+            </div>
+
+            <div class="question">
+                <p>2. Que mange principalement une tortue terrestre ?</p>
+                <label><input type="radio" name="q2" value="a"> Des petits poissons</label>
+                <label><input type="radio" name="q2" value="b"> Des plantes et légumes</label>
+                <label><input type="radio" name="q2" value="c"> Des insectes</label>
+            </div>
+
+            <div class="question">
+                <p>3. Où pond une tortue marine ?</p>
+                <label><input type="radio" name="q3" value="a"> Dans l’eau</label>
+                <label><input type="radio" name="q3" value="b"> Sur la plage</label>
+                <label><input type="radio" name="q3" value="c"> Sur des rochers</label>
+            </div>
+
+            <div class="question">
+                <p>4. Combien de pattes a une tortue ?</p>
+                <label><input type="radio" name="q4" value="a"> 2</label>
+                <label><input type="radio" name="q4" value="b"> 4</label>
+                <label><input type="radio" name="q4" value="c"> 6</label>
+            </div>
+
+            <div class="question">
+                <p>5. Quel est l’ennemi principal des œufs de tortue ?</p>
+                <label><input type="radio" name="q5" value="a"> Les oiseaux et les crabes</label>
+                <label><input type="radio" name="q5" value="b"> Les autres tortues</label>
+                <label><input type="radio" name="q5" value="c"> Les poissons</label>
+            </div>
+
+            <div class="question">
+                <p>6. Quel continent n’abrite aucune espèce de tortue ?</p>
+                <label><input type="radio" name="q6" value="a"> L'Asie</label>
+                <label><input type="radio" name="q6" value="b"> L'Afrique</label>
+                <label><input type="radio" name="q6" value="c"> L'Antarctique</label>
+            </div>
+			
+			<div class="question">
+                <p>7. De quelle couleur sont les carapaces des tortues Chelonia mydas ?</p>
+                <label><input type="radio" name="q7" value="a"> Vert</label>
+                <label><input type="radio" name="q7" value="b"> Vert-olive</label>
+                <label><input type="radio" name="q7" value="c"> Bleu</label>
+            </div>
+
+            <button type="button" onclick="corrigerQuiz()">Valider le quiz</button>
+            <button type="button" onclick="recommencerQuiz()">Recommencer</button>
+        </form>
+
+        <p id="resultatQuiz"></p>
+        <img id="gifResultat" src="" alt="Gif résultat" style="display: none; max-width: 300px; margin: 20px auto;">
+
+    </main>
+    <script>
+    function corrigerQuiz() {
+        const reponses = {
+            q1: 'c',
+            q2: 'b',
+            q3: 'b',
+            q4: 'b',
+            q5: 'a',
+            q6: 'c',
+			q7: 'b'
+        };
+
+        let score = 0;
+        let total = Object.keys(reponses).length;
+
+        document.querySelectorAll(".question").forEach(q => {
+            q.classList.remove("correct", "incorrect");
+        });
+
+        for (let question in reponses) {
+            const bloc = document.querySelector(`input[name="${question}"]`).closest('.question');
+            const choix = document.querySelector(`input[name="${question}"]:checked`);
+            
+            if (choix && choix.value === reponses[question]) {
+                bloc.classList.add("correct");
+                score++;
+            } else {
+                bloc.classList.add("incorrect");
+            }
+        }
+
+        const resultat = document.getElementById("resultatQuiz");
+        const gif = document.getElementById("gifResultat");
+        let message = `🎯 Tu as obtenu ${score}/${total} bonne(s) réponse(s). `;
+
+        if (score === total) {
+            message += "🌟 Incroyable ! Tu es un(e) expert(e) des tortues ! 🐢💚";
+            resultat.style.color = "green";
+            gif.src = "gifs/excellent.gif";
+        } else if (score >= total * 0.66) {
+            message += "👍 Très bien joué ! Tu connais bien les tortues.";
+            resultat.style.color = "seagreen";
+            gif.src = "gifs/moyen.gif";
+        } else if (score >= total * 0.33) {
+            message += "🙂 Pas mal, mais tu peux encore progresser.";
+            resultat.style.color = "orange";
+            gif.src = "gifs/moyen.gif";
+        } else {
+            message += "😕 Oups… Tu devrais relire les infos sur les tortues.";
+            resultat.style.color = "red";
+            gif.src = "gifs/faible.gif";
+        }
+
+        resultat.textContent = message;
+        resultat.style.fontWeight = "bold";
+        gif.style.display = "block";
+    }
+
+    function recommencerQuiz() {
+        document.getElementById("quizForm").reset();
+        document.getElementById("resultatQuiz").textContent = "";
+        document.getElementById("gifResultat").style.display = "none";
+
+        document.querySelectorAll(".question").forEach(q => {
+            q.classList.remove("correct", "incorrect");
+        });
+    }
+    </script>
+</body>
+</html>
